@@ -40,12 +40,11 @@ public class DataLoader {
         scanner.next();
         scanner.next();
         data.setElementNumber(Integer.parseInt(scanner.next()));
-
-
     }
 
     public void loadGrid(Grid grid){
         scanner.next();
+        scanner.hasNext();
         int i = 0;
         Node[] nodes = grid.getNodes();
 
@@ -54,6 +53,7 @@ public class DataLoader {
                 Node node = new Node();
                 node.setX(Double.parseDouble(scanner.next().replace(",","")));
                 node.setY(Double.parseDouble(scanner.next().replace(",","")));
+                node.setBC(0);
                 nodes[i/3] = node;
                 i+=2;
             }
@@ -70,11 +70,11 @@ public class DataLoader {
         while(j<(grid.getElements().length)*5){
             if(j%5!=0){
                 Element element = new Element();
-                element.setID(new double[4]);
-                element.ID[0] = Double.parseDouble(scanner.next().replace(",",""));
-                element.ID[1] = Double.parseDouble(scanner.next().replace(",",""));
-                element.ID[2] = Double.parseDouble(scanner.next().replace(",",""));
-                element.ID[3] = Double.parseDouble(scanner.next().replace(",",""));
+                element.setID(new int[4]);
+                element.ID[0] = Integer.parseInt(scanner.next().replace(",",""));
+                element.ID[1] = Integer.parseInt(scanner.next().replace(",",""));
+                element.ID[2] = Integer.parseInt(scanner.next().replace(",",""));
+                element.ID[3] = Integer.parseInt(scanner.next().replace(",",""));
 
                 elements[j/5] = element;
                 j+=4;
@@ -84,6 +84,11 @@ public class DataLoader {
                 j++;
             }
         }
+        System.out.println(scanner.next());
+        do {
+            grid.getNodes()[Integer.parseInt(scanner.next().replace(",",""))-1].setBC(1);
+            //System.out.println(scanner.next().replace(",",""));
+        }while(scanner.hasNext());
 
     }
 

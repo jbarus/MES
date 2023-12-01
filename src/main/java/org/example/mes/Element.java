@@ -4,5 +4,8 @@ import lombok.Data;
 
 @Data
 public class Element {
-    double[] ID;
+    int[] ID;
+    double[][] H;
+    double[][] HBC;
+    public double[][] P;
 }
